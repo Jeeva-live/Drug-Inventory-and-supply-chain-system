@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Drug Inventory System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+
+<body>
+  <script>
+    // Auth Gate
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if (!token) {
+      window.location.href = "/src/pages/login.html";
+    } else {
+      const routes = {
+        admin: "/src/pages/admin.html",
+        warehouse: "/src/pages/warehouse.html",
+        pharmacy: "/src/pages/pharmacy.html",
+        vendor: "/src/pages/vendor.html"
+      };
+
+      window.location.href = routes[role] || "/src/pages/login.html";
+    }
+  </script>
+</body>
+
+</html>

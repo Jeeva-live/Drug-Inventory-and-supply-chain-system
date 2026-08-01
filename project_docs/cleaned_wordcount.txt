@@ -1,0 +1,6 @@
+Chapter_1_Introduction.md: 4689 words
+Chapter_2_Literature_Review.md: 6647 words
+Chapter_3_Proposed_Approach.md: 5714 words
+Chapter_4_Procedures_For_Analyzing_Data.md: 3238 words
+Chapter_5_Results_and_Discussions.md: 3812 words
+Chapter_6_Conclusion_and_Future_Work.md: 3458 words

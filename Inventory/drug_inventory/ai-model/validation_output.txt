@@ -1,0 +1,6 @@
+MAE: 9.41
+Error Percentage: 11.80
+Accuracy: 87.00
+Precision: 1.0000
+Recall: 0.8700
+F1 Score: 0.9299

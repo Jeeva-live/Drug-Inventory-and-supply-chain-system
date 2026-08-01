@@ -1,0 +1,25 @@
+FILE: Chapter_1_Introduction.md
+  Word Count: 4689
+----------------------------------------
+FILE: Chapter_2_Literature_Review.md
+  Word Count: 6647
+  Unwanted terms found: {'derm': 1}
+----------------------------------------
+FILE: Chapter_3_Proposed_Approach.md
+  Word Count: 5714
+  Unwanted terms found: {'derm': 1}
+----------------------------------------
+FILE: Chapter_4_Procedures_For_Analyzing_Data.md
+  Word Count: 3240
+  Unwanted terms found: {'derm': 1}
+  Excessively repeated adjacent words found: 2 instances
+----------------------------------------
+FILE: Chapter_5_Results_and_Discussions.md
+  Word Count: 3867
+  Unwanted terms found: {'derm': 1}
+  Excessively repeated adjacent words found: 51 instances
+----------------------------------------
+FILE: Chapter_6_Conclusion_and_Future_Work.md
+  Word Count: 3514
+  Excessively repeated adjacent words found: 54 instances
+----------------------------------------

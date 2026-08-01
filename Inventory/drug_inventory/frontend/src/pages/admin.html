@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PharmaTrack — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+</head>
+<body style="margin:0;">
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">PharmaTrack</div>
+        <div class="brand-sub">Admin Console</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a class="nav-item active" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a class="nav-item" href="#users-section" onclick="document.getElementById('users-section').scrollIntoView({behavior:'smooth'});return false;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Users
+      </a>
+      <a class="nav-item" href="#settings-section" onclick="document.getElementById('settings-section').scrollIntoView({behavior:'smooth'});return false;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+
+      <div class="sidebar-sep"></div>
+      <div class="nav-section">Notifications</div>
+      <button class="nav-item" onclick="toggleNotifications()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Alerts
+        <span style="margin-left:auto;background:var(--danger-bg);color:var(--danger);font-size:0.6rem;font-weight:700;padding:1px 6px;border-radius:10px;">3</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-ava">AD</div>
+        <div style="min-width:0;">
+          <div class="user-name-text">Administrator</div>
+          <div class="user-role-text">System Admin</div>
+        </div>
+      </div>
+      <button onclick="logout()" class="nav-item" style="width:100%;color:rgba(255,255,255,0.4);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-area">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div>
+        <p class="topbar-title">Admin Dashboard</p>
+        <p class="topbar-sub">System Administration &amp; User Management</p>
+      </div>
+      <div class="topbar-right">
+        <div class="status-online"><span class="pulse-dot"></span>System Online</div>
+        <div style="position:relative;">
+          <button onclick="toggleNotifications()" class="icon-btn" style="position:relative;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span style="position:absolute;top:3px;right:3px;width:6px;height:6px;background:var(--danger);border-radius:50%;"></span>
+          </button>
+          <!-- Notification Panel -->
+          <div id="notification-panel" class="hidden" style="position:absolute;right:0;top:38px;width:300px;background:var(--bg-2);border:1px solid var(--b2);border-radius:10px;box-shadow:0 16px 40px rgba(0,0,0,0.5);z-index:100;">
+            <div style="padding:12px 16px 10px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:0.82rem;font-weight:600;color:var(--t1);">Notifications</span>
+              <span class="badge badge-red">3 new</span>
+            </div>
+            <div style="max-height:320px;overflow-y:auto;" class="custom-scrollbar">
+              <div style="padding:11px 14px;border-bottom:1px solid var(--b1);">
+                <div style="display:flex;gap:10px;">
+                  <div style="width:6px;height:6px;background:#ef4444;border-radius:50%;margin-top:5px;flex-shrink:0;"></div>
+                  <div><p style="font-size:0.78rem;font-weight:500;color:var(--t1);margin:0;">Low Stock Alert</p><p style="font-size:0.68rem;color:var(--t2);margin:2px 0 0;">Paracetamol inventory below threshold</p><p style="font-size:0.65rem;color:var(--t3);margin:2px 0 0;">2 minutes ago</p></div>
+                </div>
+              </div>
+              <div style="padding:11px 14px;border-bottom:1px solid var(--b1);">
+                <div style="display:flex;gap:10px;">
+                  <div style="width:6px;height:6px;background:#f59e0b;border-radius:50%;margin-top:5px;flex-shrink:0;"></div>
+                  <div><p style="font-size:0.78rem;font-weight:500;color:var(--t1);margin:0;">Expiry Warning</p><p style="font-size:0.68rem;color:var(--t2);margin:2px 0 0;">5 items expiring in 30 days</p><p style="font-size:0.65rem;color:var(--t3);margin:2px 0 0;">1 hour ago</p></div>
+                </div>
+              </div>
+              <div style="padding:11px 14px;">
+                <div style="display:flex;gap:10px;">
+                  <div style="width:6px;height:6px;background:#10b981;border-radius:50%;margin-top:5px;flex-shrink:0;"></div>
+                  <div><p style="font-size:0.78rem;font-weight:500;color:var(--t1);margin:0;">New User Added</p><p style="font-size:0.68rem;color:var(--t2);margin:2px 0 0;">Emily Wilson joined as Pharmacist</p><p style="font-size:0.65rem;color:var(--t3);margin:2px 0 0;">3 hours ago</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button onclick="openAddUserModal()" class="btn btn-primary" style="font-size:0.78rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add User
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGE BODY -->
+    <div class="page-body custom-scrollbar">
+
+      <!-- Stats -->
+      <div class="stats-row" style="grid-template-columns:repeat(5,1fr);">
+        <div class="stat-card">
+          <div>
+            <p class="stat-label" id="users-card-title">Total Users</p>
+            <p class="stat-value">—</p>
+          </div>
+          <div class="stat-icon" style="background:var(--bg-3);">
+            <svg width="18" height="18" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <p class="stat-label" id="manufacturers-card-title">Manufacturers</p>
+            <p class="stat-value">—</p>
+          </div>
+          <div class="stat-icon" style="background:var(--bg-3);">
+            <svg width="18" height="18" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <p class="stat-label" id="warehouses-card-title">Warehouses</p>
+            <p class="stat-value">—</p>
+          </div>
+          <div class="stat-icon" style="background:var(--success-bg);">
+            <svg width="18" height="18" fill="none" stroke="var(--success)" viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <p class="stat-label" id="pharmacies-card-title">Pharmacies</p>
+            <p class="stat-value">—</p>
+          </div>
+          <div class="stat-icon" style="background:var(--warning-bg);">
+            <svg width="18" height="18" fill="none" stroke="var(--warning)" viewBox="0 0 24 24" stroke-width="2"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <p class="stat-label" id="vendors-card-title">Vendors</p>
+            <p class="stat-value">—</p>
+          </div>
+          <div class="stat-icon" style="background:var(--bg-3);">
+            <svg width="18" height="18" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Table Section -->
+      <div id="users-section" class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">User Management</h2>
+            <p class="card-sub">Manage all system users and their roles</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <select id="filter-role" class="form-control" style="width:130px;padding:6px 10px;font-size:0.76rem;">
+              <option value="">All Roles</option>
+              <option value="admin">Admin</option>
+              <option value="manufacturer">Manufacturer</option>
+              <option value="warehouse_manager">Warehouse</option>
+              <option value="vendor">Vendor</option>
+              <option value="pharmacist">Pharmacist</option>
+            </select>
+            <select id="filter-location" class="form-control" style="width:130px;padding:6px 10px;font-size:0.76rem;">
+              <option value="">All Locations</option>
+            </select>
+            <select id="filter-status" class="form-control" style="width:120px;padding:6px 10px;font-size:0.76rem;">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <button onclick="applyFilters()" class="btn btn-primary btn-sm">Filter</button>
+            <button onclick="clearFilters()" class="btn btn-ghost btn-sm">Clear</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" style="text-align:center;color:var(--t2);padding:28px;">Loading users…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer">
+          <span style="font-size:0.75rem;color:var(--t2);">
+            Showing <span id="visible-users-count">0</span> of <span id="total-users-count">0</span> users
+          </span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:0.73rem;color:var(--t2);">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+            <button id="prev-btn" onclick="previousPage()" class="btn btn-ghost btn-sm" disabled>
+              <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              Prev
+            </button>
+            <button id="next-btn" onclick="nextPage()" class="btn btn-ghost btn-sm">
+              Next
+              <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div id="settings-section" class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">System Settings</h2>
+            <p class="card-sub">Configure thresholds, AI mode, and role permissions</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+
+            <!-- Low Stock Threshold -->
+            <div style="background:var(--bg-3);border:1px solid var(--b1);border-radius:9px;padding:16px;">
+              <p style="font-size:0.78rem;font-weight:600;color:var(--t1);margin:0 0 4px;">Low Stock Threshold</p>
+              <p style="font-size:0.7rem;color:var(--t2);margin:0 0 12px;">Alert when stock drops below</p>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="number" id="low-stock-threshold" class="form-control" value="100" style="flex:1;">
+                <button onclick="saveThreshold('low-stock')" class="btn btn-warning btn-sm">Save</button>
+              </div>
+            </div>
+
+            <!-- Expiry Alert Days -->
+            <div style="background:var(--bg-3);border:1px solid var(--b1);border-radius:9px;padding:16px;">
+              <p style="font-size:0.78rem;font-weight:600;color:var(--t1);margin:0 0 4px;">Expiry Alert (Days)</p>
+              <p style="font-size:0.7rem;color:var(--t2);margin:0 0 12px;">Alert days before expiry date</p>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="number" id="expiry-alert-days" class="form-control" value="30" style="flex:1;">
+                <button onclick="saveThreshold('expiry')" class="btn btn-warning btn-sm">Save</button>
+              </div>
+            </div>
+
+            <!-- AI Mode -->
+            <div style="background:var(--bg-3);border:1px solid var(--b1);border-radius:9px;padding:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                <p style="font-size:0.78rem;font-weight:600;color:var(--t1);margin:0;">AI Reorder Mode</p>
+                <label style="position:relative;display:inline-flex;align-items:center;cursor:pointer;">
+                  <input type="checkbox" id="ai-toggle" style="width:0;height:0;opacity:0;position:absolute;">
+                  <span style="width:38px;height:20px;background:var(--bg-4);border:1px solid var(--b2);border-radius:10px;display:inline-block;position:relative;transition:all 0.2s;cursor:pointer;">
+                    <span style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:var(--t2);border-radius:50%;transition:all 0.2s;"></span>
+                  </span>
+                </label>
+              </div>
+              <p style="font-size:0.7rem;color:var(--t2);margin:0;">Enable AI-powered reorder suggestions</p>
+            </div>
+          </div>
+
+          <!-- Permissions Matrix -->
+          <div style="margin-top:16px;background:var(--bg-3);border:1px solid var(--b1);border-radius:9px;padding:16px;">
+            <p style="font-size:0.78rem;font-weight:600;color:var(--t1);margin:0 0 12px;">Role Permissions</p>
+            <div id="permissions-matrix" style="overflow-x:auto;">
+              <table class="tbl" style="min-width:500px;">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th style="text-align:center;">View Inventory</th>
+                    <th style="text-align:center;">Manage Stock</th>
+                    <th style="text-align:center;">Generate Reports</th>
+                    <th style="text-align:center;">Manage Users</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:500;">Manufacturer</td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="manufacturer" data-action="view_inventory" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="manufacturer" data-action="manage_stock" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="manufacturer" data-action="generate_reports" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="manufacturer" data-action="manage_users" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500;">Warehouse</td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="warehouse_manager" data-action="view_inventory" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="warehouse_manager" data-action="manage_stock" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="warehouse_manager" data-action="generate_reports" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="warehouse_manager" data-action="manage_users" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500;">Pharmacist</td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="pharmacist" data-action="view_inventory" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="pharmacist" data-action="manage_stock" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="pharmacist" data-action="generate_reports" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="pharmacist" data-action="manage_users" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500;">Vendor</td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="vendor" data-action="view_inventory" checked style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="vendor" data-action="manage_stock" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="vendor" data-action="generate_reports" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                    <td style="text-align:center;"><input type="checkbox" data-role="vendor" data-action="manage_users" style="accent-color:#0f172a;width:14px;height:14px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end page-body -->
+  </div><!-- end main-area -->
+</div><!-- end app-shell -->
+
+<!-- ADD USER MODAL -->
+<div id="add-user-modal" class="modal-backdrop hidden">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h3 class="modal-title">Add New User</h3><p class="modal-sub">Create a new system account</p></div>
+      <button onclick="closeAddUserModal()" class="x-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <form id="add-user-form" style="display:flex;flex-direction:column;gap:13px;">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="user-name" class="form-control" placeholder="Enter full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="user-email" class="form-control" placeholder="user@example.com" required>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Role</label>
+            <select id="user-role" class="form-control" required>
+              <option value="">Select role</option>
+              <option value="admin">Admin</option>
+              <option value="manufacturer">Manufacturer</option>
+              <option value="warehouse_manager">Warehouse Manager</option>
+              <option value="vendor">Vendor</option>
+              <option value="pharmacist">Pharmacist</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="user-status" class="form-control">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input type="text" id="user-location" class="form-control" placeholder="e.g. New York Warehouse">
+        </div>
+        <div class="modal-foot" style="padding:0;border:none;margin-top:4px;">
+          <button type="button" onclick="closeAddUserModal()" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT USER MODAL -->
+<div id="edit-user-modal" class="modal-backdrop hidden">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h3 class="modal-title">Edit User</h3><p class="modal-sub">Update user account details</p></div>
+      <button onclick="closeEditUserModal()" class="x-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <form id="edit-user-form" style="display:flex;flex-direction:column;gap:13px;">
+        <input type="hidden" id="edit-user-id">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="edit-user-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="edit-user-email" class="form-control" required>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Role</label>
+            <select id="edit-user-role" class="form-control">
+              <option value="admin">Admin</option>
+              <option value="manufacturer">Manufacturer</option>
+              <option value="warehouse_manager">Warehouse Manager</option>
+              <option value="vendor">Vendor</option>
+              <option value="pharmacist">Pharmacist</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="edit-user-status" class="form-control">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input type="text" id="edit-user-location" class="form-control">
+        </div>
+        <div class="modal-foot" style="padding:0;border:none;margin-top:4px;">
+          <button type="button" onclick="closeEditUserModal()" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/js/admin.js"></script>
+</body>
+</html>

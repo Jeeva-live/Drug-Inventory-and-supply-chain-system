@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PharmaTrack — Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body style="margin:0;overflow:auto;min-height:100vh;">
+  <div class="login-page-bg">
+
+    <!-- Login Card -->
+    <div class="login-card">
+
+      <!-- Header -->
+      <div class="login-hero">
+        <div class="login-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+          </svg>
+        </div>
+        <h1 id="page-title" class="login-title">PharmaTrack</h1>
+        <p id="welcome-text" class="login-sub">Drug Inventory Management System</p>
+      </div>
+
+      <!-- Form -->
+      <div class="login-form-area">
+        <p style="font-size:0.82rem;font-weight:600;color:var(--t1);margin:0 0 2px;">Welcome back</p>
+        <p style="font-size:0.73rem;color:var(--t2);margin:0 0 18px;">Enter your credentials to continue</p>
+
+        <form id="login-form" style="display:flex;flex-direction:column;gap:13px;">
+
+          <!-- Email -->
+          <div>
+            <label for="email" style="display:block;font-size:0.73rem;font-weight:500;color:var(--t1);margin-bottom:5px;">Email / User ID</label>
+            <div style="position:relative;">
+              <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--t3);display:flex;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input type="text" id="email" name="email" class="input-field" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="password" style="display:block;font-size:0.73rem;font-weight:500;color:var(--t1);margin-bottom:5px;">Password</label>
+            <div style="position:relative;">
+              <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--t3);display:flex;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password" required style="padding-right:38px;">
+              <button type="button" id="toggle-password"
+                style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);cursor:pointer;padding:0;display:flex;align-items:center;transition:color 0.15s;"
+                onmouseover="this.style.color='var(--t2)'" onmouseout="this.style.color='var(--t3)'">
+                <svg id="eye-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eye-off-icon" class="hidden" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember + Forgot -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;">
+              <input type="checkbox" id="remember-me" style="width:13px;height:13px;accent-color:#0f172a;">
+              <span style="font-size:0.73rem;color:var(--t2);">Remember me</span>
+            </label>
+            <button type="button" id="forgot-password-btn"
+              style="background:none;border:none;color:var(--t1);font-size:0.73rem;cursor:pointer;font-family:'Inter',sans-serif;transition:color 0.15s;text-decoration:underline;"
+              onmouseover="this.style.color='var(--t2)'" onmouseout="this.style.color='var(--t1)'">
+              Forgot password?
+            </button>
+          </div>
+
+          <!-- Info note -->
+          <div style="background:var(--bg-3);border:1px solid var(--b1);border-radius:7px;padding:9px 11px;display:flex;gap:8px;align-items:flex-start;">
+            <svg width="13" height="13" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p style="font-size:0.71rem;color:var(--t2);margin:0;line-height:1.5;"><span style="color:var(--t1);font-weight:500;">Auto-role detection</span> — Your dashboard is assigned based on account permissions.</p>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="login-btn" class="login-btn" style="margin-top:2px;">
+            <span id="login-btn-text">Sign In</span>
+            <svg id="login-arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg id="login-spinner" class="hidden animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Card footer -->
+      <div style="padding:12px 26px;border-top:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;">
+        <p style="font-size:0.7rem;color:var(--t3);margin:0;">
+          Need an account? <button type="button" id="contact-admin-btn" style="background:none;border:none;color:var(--t1);font-size:0.7rem;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline;">Contact Admin</button>
+        </p>
+        <div style="display:flex;align-items:center;gap:5px;">
+          <svg width="11" height="11" fill="none" stroke="var(--t3)" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span id="security-note" style="font-size:0.68rem;color:var(--t3);">Encrypted session</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container" style="position:fixed;top:18px;right:18px;z-index:100;display:flex;flex-direction:column;gap:8px;"></div>
+
+  <!-- Role Modal -->
+  <div id="role-modal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><h3 class="modal-title">Choose Dashboard</h3><p class="modal-sub">You have access to multiple roles</p></div>
+      </div>
+      <div class="modal-body">
+        <div id="role-options" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
+        <button id="continue-btn" class="login-btn">
+          <span>Continue</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Modal -->
+  <div id="forgot-modal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><h3 class="modal-title">Reset Password</h3><p class="modal-sub">Enter your email to receive reset instructions</p></div>
+        <button id="close-forgot-modal" class="x-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <form id="forgot-form" style="display:flex;flex-direction:column;gap:14px;">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="reset-email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <button type="submit" class="login-btn">Send Reset Link</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><h3 class="modal-title">Contact Administrator</h3><p class="modal-sub">Get your account set up</p></div>
+        <button id="close-contact-modal" class="x-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction:column;gap:9px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:11px;background:var(--bg-3);border:1px solid var(--b1);border-radius:8px;">
+          <div style="width:32px;height:32px;background:var(--bg-4);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="14" height="14" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.68rem;color:var(--t2);margin:0;">Email</p>
+            <p style="font-size:0.8rem;font-weight:500;color:var(--t1);margin:0;">admin@pharmatrack.com</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px;background:var(--bg-3);border:1px solid var(--b1);border-radius:8px;">
+          <div style="width:32px;height:32px;background:var(--bg-4);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="14" height="14" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 10.5a2 2 0 0 1 1.42-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l1.33-1.33a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.68rem;color:var(--t2);margin:0;">Phone</p>
+            <p style="font-size:0.8rem;font-weight:500;color:var(--t1);margin:0;">+1 (555) 123-4567</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px;background:var(--bg-3);border:1px solid var(--b1);border-radius:8px;">
+          <div style="width:32px;height:32px;background:var(--bg-4);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="14" height="14" fill="none" stroke="var(--t2)" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.68rem;color:var(--t2);margin:0;">Support Hours</p>
+            <p style="font-size:0.8rem;font-weight:500;color:var(--t1);margin:0;">Mon–Fri, 9AM – 6PM EST</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/login.js"></script>
+</body>
+</html>
